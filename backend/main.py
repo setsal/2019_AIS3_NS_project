@@ -5,7 +5,7 @@ import sys
 import os
 import subprocess
 import flask
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, jsonify,  make_response
 from werkzeug.utils import secure_filename
 
 app = flask.Flask(__name__)
@@ -35,7 +35,7 @@ def image_to_string(img, cleanup=True, plus=''):
     return text
 
 
-@app.route('/', methods=['GET'])
+@app.route('/', methods=["GET"])
 def home():
     return render_template('index.html')
 
@@ -61,5 +61,12 @@ def upload():
                 return redirect(request.url)
 
     return render_template('result.html', result="hello2")
+
+
+@app.route('/upload-check', methods=["POST"])
+def uploadCheck():
+    res = make_response(jsonify({"message": "OK"}), 200)
+    return res
+
 
 app.run()

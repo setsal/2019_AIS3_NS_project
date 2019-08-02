@@ -16,9 +16,9 @@ cd backend && pip install -r requirements.txt
 
 1.  change the location in `main.py line 14` to match your computer environment
 2. Run the server
-    ```
-    python main.py
-    ```
+```
+python main.py
+```
 
 Visit the `localhost:5000` you will see the demo page to upload the image
 
