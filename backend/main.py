@@ -14,7 +14,7 @@ app.config["DEBUG"] = True
 
 app.config["IMAGE_UPLOADS"] = "/home/setsal/ais3/2019_AIS3_NS_project/backend/img/upload"
 app.config["ALLOWED_IMAGE_EXTENSIONS"] = ["JPEG", "JPG", "PNG"]
-
+global counter
 
 
 def allowed_image(filename):
@@ -31,14 +31,13 @@ def allowed_image(filename):
 def image_to_string(url, location, cleanup=True, plus=''):
     command = 'wget ' + url + ' -O ' +  location + '.jpg'
     print(command, file=sys.stderr)
-    subprocess.check_output('wget ' + url + ' -O ' +  location + '.jpg' )
-    # subprocess.check_output('tesseract -l chi_tra ' + img + ' ' + img + ' ' + plus, shell=True)  #create the image txt
-    # text = ''
-    # with open(img + '.txt', 'r') as f:
-    #     text = f.read().strip()
-    # if cleanup:
-    #     os.remove(img + '.txt')
-    text = 'ok'
+    subprocess.check_output('wget "' + url + '" -O ' +  location + '.jpg', shell=True )
+    subprocess.check_output('tesseract -l chi_tra ' + location  + '.jpg' + ' ' + location + ' ' + plus, shell=True)  #create the image txt
+    text = ''
+    with open(location  + '.txt', 'r') as f:
+        text = f.read().strip()
+    if cleanup:
+        os.remove(img + '.txt')
     return text
 
 
@@ -69,15 +68,17 @@ def upload():
 
     return render_template('result.html', result="hello2")
 
-
+counter = 1
 @app.route('/upload-check', methods=["POST"])
 def uploadCheck():
-    counter = 1
+    global counter
     url = request.values['url']
     text = image_to_string( url, os.path.join(app.config["IMAGE_UPLOADS"], str(counter) ), False )
+    if '太陽花' in text:
+        return 'yes'
     counter = counter + 1 
     # res = make_response(jsonify({"message": "OK"}), 200)
-    return "Hello"
+    return 'no'
 
 
-app.run()
+app.run(threaded=False)

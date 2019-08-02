@@ -26,12 +26,16 @@ function removeElems () {
             data:{ url: imageUrl},
             type: 'POST',
             cache: false,
-            success: function(data) { console.log(data); },
+            success: function(data) { 
+              if ( data == "yes" ) {
+                article.innerHTML = templateHtml
+              }
+              console.log(data); 
+            },
             error: function (xhr, textStatus, thrownError) {
               console.log(textStatus);
             }
           })
-          console.log(imageUrl);
     }
     catch(err) { 
         
