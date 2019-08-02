@@ -19,13 +19,18 @@ function removeElems () {
   articles.forEach(function (article) {
     try { 
         var imageUrl = article.getElementsByClassName("scaledImageFitWidth img")[0].src
-        // $.ajax({
-        //     url: 'http://localhost:5000/upload-check',
-        //     type: 'POST',
-        //     success: function(data) { console.log(data); },
-        //     contentType: "application/json",
-        //     dataType: 'json'
-        //   })
+
+        $.ajax({
+            url: 'http://localhost:5000/upload-check',
+            // data:JSON.stringify({"url": imageUrl}),
+            data:{ url: imageUrl},
+            type: 'POST',
+            cache: false,
+            success: function(data) { console.log(data); },
+            error: function (xhr, textStatus, thrownError) {
+              console.log(textStatus);
+            }
+          })
           console.log(imageUrl);
     }
     catch(err) { 
