@@ -3,12 +3,18 @@
     "version": "0.0",
     "description": "AIS3 2019 Final Project",
     "manifest_version": 2,
-  
-    "content_scripts": [{
-      "matches": ["https://*.facebook.com/*", "http://localhost:5000/*"],
-      "js": ["thirdParty/jquery-3.4.1.min.js", "script/watch.js" ]
-    }],
-    "permissions": [ 
+
+      "browser_action": {
+        "default_title": "OCR title",
+        "default_popup": "popup.html"
+      } ,
+
+      "content_scripts": [{
+        "matches": ["https://*.facebook.com/*", "http://localhost:5000/*"],
+        "js": ["thirdParty/jquery-3.4.1.min.js", "script/watch.js" ]
+      }],
+
+      "permissions": [ 
         "webRequest", 
         "https://*.facebook.com/*", 
         "http://*.facebook.com/*", 

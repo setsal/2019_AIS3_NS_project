@@ -8,15 +8,6 @@ const contentFromPosts = document.querySelector('#contentArea')
 const contentFromPages = document.querySelector('#pagelet_timeline_main_column')
 const content = contentFromPosts || contentFromPages
 
-function processStatus(response) {
-    // 狀態 "0" 是處理本地檔案 (例如Cordova/Phonegap等等)
-    if (response.status === 200 || response.status === 0) {
-        return Promise.resolve(response)
-    } else {
-        return Promise.reject(new Error(response.statusText))
-    }
-}
-
 
 function removeElems () {
   const articles = content.querySelectorAll(`div[id][role="article"]`)
@@ -46,14 +37,9 @@ function removeElems () {
   })
 }
 
-content.addEventListener('DOMContentLoaded', function (event) {
-  removeElems()
-})
-
-content.addEventListener('DOMNodeInserted', function (event) {
-//   removeElems()
-})
-
-content.addEventListener('DOMSubtreeModified', function (event) {
-//   removeElems()
-})
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse)
+{
+    // console.log(sender.tab ?"from a content script:" + sender.tab.url :"from the extension");
+    if(request.cmd == 'test') removeElems();
+    sendResponse('ok');
+});
