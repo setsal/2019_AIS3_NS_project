@@ -14,3 +14,7 @@ tests/**/coverage/
 *.ntvs*
 *.njsproj
 *.sln
+
+
+# backend
+backend/img/*
