@@ -35,7 +35,6 @@ def image_to_string(img, cleanup=True, plus=''):
     return text
 
 
-
 @app.route('/', methods=['GET'])
 def home():
     return render_template('index.html')
