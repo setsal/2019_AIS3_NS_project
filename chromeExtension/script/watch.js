@@ -2,7 +2,7 @@
 // Github: https://github.com/setsal
 
 const blocklist = [ '你好' ]
-const templateHtml = '<div><h1 style="padding: 30px; text-align: center;">好像是1偏激的圖片 你確定要打開他嗎？</h1></div>'
+const templateHtml = '<div><h1 style="padding: 30px; text-align: center;">好像是偏激的圖片 你確定要打開他嗎？</h1></div>'
 
 const contentFromPosts = document.querySelector('#contentArea')
 const contentFromPages = document.querySelector('#pagelet_timeline_main_column')

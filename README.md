@@ -14,7 +14,7 @@ cd backend && pip install -r requirements.txt
 
 #### Run the backend server
 
-1.  change the location in `main.py line 14` to match your computer environment
+1. Change the location in `main.py line 14` to match your computer environment
 2. Run the server
 ```
 python main.py
@@ -25,6 +25,16 @@ Visit the `localhost:5000` you will see the demo page to upload the image
 The upload image & after ocr text will save in `backend/img/upload`
 
 
+#### Chrome Extension
+
+1. Open chrome browser
+2. Go to the extension manage page, load the dir `chromeExtension`
+
+Visit the facebook, you will see an extension button on your bar
+
+Click it and Have fun :D
+
 Contributors
 ==
 + setsal Lan
++ x890311x 

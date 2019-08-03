@@ -12,7 +12,7 @@ from werkzeug.utils import secure_filename
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 
-app.config["IMAGE_UPLOADS"] = "/home/setsal/ais3/2019_AIS3_NS_project/backend/img/upload"
+app.config["IMAGE_UPLOADS"] = ""
 app.config["ALLOWED_IMAGE_EXTENSIONS"] = ["JPEG", "JPG", "PNG"]
 global counter
 
@@ -74,8 +74,7 @@ def uploadCheck():
     global counter
     url = request.values['url']
     text = image_to_string( url, os.path.join(app.config["IMAGE_UPLOADS"], str(counter) ), False )
-    if '太陽花' in text:
-        return 'yes'
+    
     counter = counter + 1 
     # res = make_response(jsonify({"message": "OK"}), 200)
     return 'no'
